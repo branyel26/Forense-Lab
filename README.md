@@ -9,7 +9,7 @@ Asignatura: Informática Forense · Profesor: Cándido Noel Ramírez · Grupo 6
 ![Estado](https://img.shields.io/badge/Estado-Caso%20Cerrado-red)
 ![Severidad](https://img.shields.io/badge/Severidad-CRÍTICA-critical)
 ![Plataforma](https://img.shields.io/badge/Nube-Microsoft%20Azure%20East%20US-0078D4?logo=microsoftazure)
-![Herramientas](https://img.shields.io/badge/Herramientas-FTK%20Imager%20%7C%20Autoruns%20%7C%20Process%20Explorer%20%7C%20Event%20Viewer-green)
+![Herramientas](https://img.shields.io/badge/Herramientas-FTK%20Imager%20%7C%20Autoruns%20%7C%20Process%20Explorer%20%7C%20Wireshark%20%7C%20Event%20Viewer-green)
 
 </div>
 
@@ -283,6 +283,26 @@ El Visor de Eventos proporcionó la **evidencia directa e irrefutable de la deto
 
 ---
 
+### Herramienta 6 — Wireshark
+
+Wireshark capturó el tráfico de red en tiempo real durante el incidente, evidenciando la **conexión C2 activa** entre el equipo comprometido de Ana Pérez (`10.0.0.4`) y la máquina atacante (`10.0.0.5`) mediante tráfico TCP masivo y continuo.
+
+**Tráfico C2 — Beacon NJRat hacia 10.0.0.5**
+
+![Wireshark - Tráfico C2 TCP hacia 10.0.0.5](evidencias/herramientas/10_wireshark_trafico-c2-tcp-10.0.0.5.png)
+
+*Captura filtrada por `ip.addr == 10.0.0.5` — Tráfico TCP continuo entre el equipo víctima y la IP del atacante, confirmando el canal de comando y control (C2) establecido por NJRat.*
+
+---
+
+**Detección de backdoor por Windows Defender**
+
+![Wireshark - Detección NJRat por Windows Defender](evidencias/herramientas/11_wireshark_trafico-c2-deteccion-njrat-windows-defender.png)
+
+*Durante la captura, Windows Defender detectó y alertó la presencia de un `Backdoor:MSIL` — firma correspondiente a NJRat v0.7d — confirmando de forma independiente la presencia del troyano en el sistema.*
+
+---
+
 ## Resumen de Evidencias
 
 | # | Herramienta | Evidencia Recolectada | Relevancia Forense |
@@ -292,6 +312,7 @@ El Visor de Eventos proporcionó la **evidencia directa e irrefutable de la deto
 | E-03 | Process Explorer | `svchost.exe` PID 4320 con path denegado, sin versión, sin Autostart — iniciado a las 8:04 PM | Indica proceso malicioso activo durante el incidente, posiblemente componente NJRat |
 | E-04 | Event Viewer | Event ID 4724 para `ana.perez`, `luis.gomez`, `carlos.mendez` a las 5:13:03 AM del 23/04/2026 | Evidencia directa e irrefutable de la detonación y el cambio masivo de contraseñas |
 | E-05 | HashCalc | MD5 y SHA1 calculados independientemente para `memoria_ram.mem` | Cadena de custodia: confirma que la imagen de RAM no fue modificada durante el análisis |
+| E-06 | Wireshark | Tráfico TCP continuo entre `10.0.0.4` y `10.0.0.5` + alerta de Windows Defender detectando `Backdoor:MSIL` (NJRat) | Confirma el canal C2 activo y la presencia del troyano en el sistema comprometido |
 
 ---
 
