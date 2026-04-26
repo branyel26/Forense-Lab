@@ -25,11 +25,19 @@ Asignatura: Informática Forense · Profesor: Cándido Noel Ramírez · Grupo 6
 
 ---
 
-## Resumen del Caso
+## El Caso
 
-El **23 de abril de 2026 a las 5:13 AM**, la empresa **Path Secure SRL** sufrió un incidente de seguridad crítico que resultó en la **paralización total de operaciones** por el compromiso masivo de credenciales en su entorno de Active Directory.
+La mañana del **miércoles 23 de abril de 2026**, los empleados de **Path Secure SRL** llegaron a sus puestos de trabajo y encontraron que ninguno podía iniciar sesión. Los sistemas respondían con error de credenciales inválidas — sin excepción, en toda la organización. No había un cambio de contraseñas programado, ni ningún miembro del área de Tecnología o Seguridad reportó haberlo realizado. La paralización fue total e inmediata.
 
-Una bomba lógica implementada mediante un script PowerShell, activada por una tarea programada camuflada como proceso del sistema, cambió **simultáneamente las contraseñas de todos los usuarios del dominio** `pathsecure.local` durante la madrugada, impidiendo el acceso de todos los empleados al comenzar la jornada laboral.
+La alarma se activó a las **8:05 AM**. Al no encontrar una causa técnica interna que lo justificara, se determinó que se trataba de un **ciberataque** y se procedió a activar el protocolo de respuesta a incidentes.
+
+La investigación reveló que horas antes, a las **5:13 AM**, una bomba lógica había detonado en el Domain Controller del dominio `pathsecure.local`: un script PowerShell camuflado como proceso legítimo del sistema, activado por una tarea programada, había **cambiado simultáneamente las contraseñas de todos los usuarios del dominio**, dejando a la empresa sin acceso a sus propios sistemas justo al inicio de la jornada laboral.
+
+El origen del ataque se remontaba a la noche anterior. **Ana Pérez**, encargada del Departamento de Recursos Humanos, había recibido un correo electrónico aparentemente enviado por el propio departamento de RRHH, con la nómina mensual adjunta — un documento que acostumbraba recibir en esas fechas. Al intentar abrirlo, el archivo nunca mostró ninguna nómina. Ana no le dio mayor importancia al hecho. Lo que no sabía es que ese archivo era un **troyano de acceso remoto (NJRat v0.7d)** que, al ejecutarse, entregó el control total de su equipo al atacante.
+
+Desde esa sesión remota, el atacante exploró el sistema y encontró un archivo con **credenciales administrativas del dominio almacenadas en texto plano**. Con esas credenciales escaló al Domain Controller, implantó la bomba lógica y desapareció — dejando el daño programado para horas después.
+
+Este repositorio documenta la **investigación forense digital** realizada sobre el incidente: la preservación de evidencia, el análisis de herramientas, los hallazgos y las conclusiones del equipo investigador.
 
 ---
 
