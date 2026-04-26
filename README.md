@@ -96,7 +96,6 @@ Una vez ejecutado, NJRat realizó las siguientes acciones automáticas:
 - Se copió en `%APPDATA%\Roaming\` con nombre aleatorio
 - Creó entrada de registro para persistencia en el arranque
 - Estableció conexión C2 saliente al atacante por el **puerto 1177/TCP**
-- Activó **keylogger integrado** para captura de credenciales
 - Habilitó **File Manager** para exploración del sistema de archivos
 
 ### 3. Escalada de Privilegios — Credenciales en Texto Plano

@@ -63,7 +63,6 @@ A las **5:13 AM del 23 de abril**, la bomba lógica detonó, cambiando simultán
 | 23/04/2026 — 4:15 AM | El troyano se activa y establece beacon hacia el C2 (puerto 1177/TCP) |
 | 23/04/2026 — 4:27 AM | Atacante obtiene acceso remoto al equipo de Ana Pérez vía NJRat |
 | 23/04/2026 — 4:40 AM | Atacante usa File Manager de NJRat y localiza `passwords_temporal.txt` con credenciales `admin.it : P@ssw0rdAdmin2024` |
-| 23/04/2026 — 4:50 AM | Atacante usa keylogger de NJRat y captura credenciales adicionales |
 | 23/04/2026 — 4:58 AM | Atacante accede al Domain Controller vía RDP con credenciales `admin.it` — escalada de privilegios exitosa |
 | 23/04/2026 — 5:05 AM | Atacante crea `svchost_helper.ps1` en `C:\Windows\System32\` y la tarea programada `WindowsUpdateHelper` |
 | 23/04/2026 — **5:13 AM** | **DETONACIÓN:** Bomba lógica ejecuta script. Contraseñas de todos los usuarios del AD cambiadas simultáneamente |
@@ -85,7 +84,6 @@ NJRat (Njw0rm) es un Remote Access Trojan (RAT) ampliamente utilizado en ataques
 - Se copió en `%APPDATA%\Roaming\` con nombre aleatorio
 - Agregó entrada de registro para persistencia en el arranque
 - Estableció conexión C2 saliente por el **puerto 1177/TCP**
-- Activó **keylogger integrado** para captura de credenciales
 - Habilitó **File Manager** para acceso completo al sistema de archivos
 
 ### 4.3 Movimiento Lateral — Escalada de Privilegios
@@ -215,7 +213,7 @@ Los logs de seguridad del Domain Controller registraron el **Event ID 4724** (An
 ## 7. Conclusiones
 
 1. **Phishing como vector inicial** — El atacante usó ingeniería social con un correo de alta credibilidad explotando la confianza en comunicaciones internas de RRHH.
-2. **RAT para acceso persistente** — NJRat proporcionó acceso remoto total: keylogger, file manager y shell remoto sobre el equipo comprometido.
+2. **RAT para acceso persistente** — NJRat proporcionó acceso remoto total: file manager y shell remoto sobre el equipo comprometido.
 3. **Error humano crítico** — El almacenamiento de credenciales administrativas en texto plano (`passwords_temporal.txt`) fue el factor decisivo que permitió la escalada al Domain Controller. Constituye una violación grave de políticas de seguridad.
 4. **Bomba lógica efectiva** — La combinación de un script PowerShell camuflado y una Scheduled Task con nombre legítimo resultó en una ejecución exitosa sin detección previa.
 5. **Impacto total calculado** — La detonación a las 5:13 AM garantizó la interrupción máxima al coincidir con el inicio de la jornada laboral.
