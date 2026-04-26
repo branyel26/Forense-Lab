@@ -98,6 +98,10 @@ Este repositorio documenta la **investigación forense digital** realizada sobre
 
 El atacante envió un correo fraudulento desde `rrhh.pathsecure@gmail.com` suplantando al Departamento de Recursos Humanos. El adjunto `Nomina_RRHH_Q2_2026.pdf.exe` era el troyano **NJRat v0.7d** disfrazado con doble extensión e ícono de PDF, distribuido en un `.zip` con contraseña `1234` para evadir filtros de correo.
 
+![Correo de phishing dirigido a Ana Pérez](evidencias/ataque/01_correo-phishing-spear-phishing-ana-perez.png)
+
+*Correo fraudulento recibido por Ana Pérez — remitente `rrhh.pathsecure@gmail.com` suplantando el dominio corporativo. El adjunto `Nomina_RRHH_Q2_2026.pdf` era en realidad el troyano NJRat v0.7d.*
+
 ### 2. Establecimiento de C2 — NJRat v0.7d
 
 Una vez ejecutado, NJRat realizó las siguientes acciones automáticas:
